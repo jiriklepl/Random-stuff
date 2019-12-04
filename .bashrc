@@ -22,7 +22,7 @@ HISTFILESIZE=2000
 # really nice prompt
 function set_bash_prompt {
     [ $? -ne 0 ] && color='\e[41;30m ($?)' || color='\e[46;30m'
-    export PS1="\e[0;29m \t $color \u@\h \e[0;30;44m \w\e[44m \e[00m\n\$ "
+    export PS1="\e[0;29m \t $color \u@\h \e[0;30;44m \w \e[0m\n\$ "
 }
 
 export PROMPT_COMMAND=set_bash_prompt
