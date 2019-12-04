@@ -21,14 +21,8 @@ HISTFILESIZE=2000
 
 # really nice prompt
 function set_bash_prompt {
-    if [ $? -ne 0 ]; then
-        local color1='\e[31m'
-        local color2='\e[41m'
-    else
-        local color1='\e[36m'
-        local color2='\e[46m'
-    fi
-    export PS1="$color1▐\e[0;30m${color2}\u@\h\e[44m${color1}▌\e[0;30;44m\w\e[34m▌\e[00m\n\$ "
+    [ $? -ne 0 ] && color='\e[41;30m ($?)' || color='\e[46;30m'
+    export PS1="\e[0;29m \t $color \u@\h \e[0;30;44m \w\e[44m \e[00m\n\$ "
 }
 
 export PROMPT_COMMAND=set_bash_prompt
