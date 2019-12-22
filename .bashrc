@@ -20,12 +20,21 @@ HISTFILESIZE=2000
 # export PS1='\e[01;36m\u@\h\e[00m:\e[01;34m\w\e[00m\$ '
 
 # really nice prompt
-function set_prompt {
+function set_bash_prompt {
     [ $? -ne 0 ] && color='\e[41;30m ($?)' || color='\e[46;30m'
     export PS1="\e[0;29m \t $color \u@\h \e[0;30;44m \w \e[0m\n\$ "
 }
 
-export PROMPT_COMMAND=set_prompt
+export PROMPT_COMMAND=set_bash_prompt
+
+if [ -d  "/home/$USER/.local/sh" ]; then
+    case "$PATH" in
+        */home/$USER/.local/sh*) ;;
+        *)
+            export PATH="/home/$USER/.local/sh:$PATH"
+            ;;
+    esac
+fi
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
@@ -50,5 +59,5 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # more aliases
-alias explorer="explorer.exe"
+alias explorer="explorer.sh"
 alias mff-connect="ssh kleplj@u-pl7.ms.mff.cuni.cz"
